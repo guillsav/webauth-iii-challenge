@@ -9,7 +9,10 @@ function validation(req, res, next) {
       .required(),
     password: Joi.string()
       .regex(/^[a-zA-Z0-9]{3,128}$/)
-      .required()
+      .required(),
+    department: Joi.string()
+      .min(3)
+      .max(128)
   });
 
   const user = Joi.validate(req.body, schema, (e, result) => {

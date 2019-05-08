@@ -2,12 +2,19 @@ const db = require('../database/dbConfig');
 
 module.exports = {
   getUsers,
+  getUserBy,
   getUser,
   addUser
 };
 
 function getUsers() {
-  return db('users');
+  return db('users').select('id', 'username', 'password', 'department');
+}
+
+function getUserBy(username) {
+  return db('users')
+    .where({username}, 'username')
+    .first();
 }
 
 function getUser(id) {
